@@ -1,41 +1,51 @@
-using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using Address.Models;
-namespace FriendLetter.Models
+
+namespace Address.Models
 {
-    public class address
+    public class Address
     {
-        private string _recipient;
-        private string _sender;
-        private string _person;
-        public string GetRecipient()
+      private static List<Address> _instances = new List<Address> {};
+
+        private string name;
+        private string address;
+        private string phone;
+
+        public Address(string name, string address, string phone)
+            {
+              _name = name;
+              _address = address;
+              _phone = phone;
+            }
+
+        public string GetName()
         {
-            return _recipient;
+            return _name;
+        }
+        public string GetAddress()
+        {
+            return _address;
+        }
+        public string GetPhone()
+        {
+            return _phone;
+        }
+        public void Save()
+        {
+          foreach (var adds in _instances)
+            if (_name == adds._name && _phone == adds._phone && _address == adds._address)
+              return;
+
+          _instances.Add(this);
+        }
+        public static List<Address> GetAll()
+        {
+            return _instances;
         }
 
-        public void SetRecipient(string newRecipient)
+        public static void Clear()
         {
-            _recipient = newRecipient;
-        }
-
-        public string GetSender()
-        {
-            return _sender;
-        }
-
-        public void SetSender(string newSender)
-        {
-            _sender = newSender;
-        }
-        public string GetPerson()
-        {
-            return _person;
-        }
-
-        public void SetPerson(string newPerson)
-        {
-            _person = newPerson;
+            _instances.Clear();
         }
     }
 }

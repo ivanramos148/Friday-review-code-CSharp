@@ -1,4 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using Address.Models;
 
 namespace Project.Controllers
 {
@@ -6,7 +9,7 @@ namespace Project.Controllers
     {
 
         [Route("/")]
-          public ActionResult index()
+          public ActionResult Form()
         {
             return View();
         }
@@ -14,14 +17,20 @@ namespace Project.Controllers
           [HttpPost("/list/clear")]
         public ActionResult Clear()
         {
-            Car.Clear();
+            adds.Clear();
             return View();
         }
-
-
-
-
-
-
+        [Route("/list")]
+        public ActionResult List()
+        {
+        Address newAddress = new Address(
+            Request.Form["name"],
+            Request.Form["phone"],
+            Request.Form["address"])
+        );
+        newAddress.Save();
+        List<Address> allAddress = adds.GetAll();
+            return View(allAddress);
+          }
     }
 }
