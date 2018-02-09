@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using Address.Models;
+using Infos.Models;
 
 namespace Project.Controllers
 {
@@ -9,28 +9,30 @@ namespace Project.Controllers
     {
 
         [Route("/")]
-          public ActionResult Form()
+        public ActionResult Form()
         {
+          System.Console.WriteLine("here");
             return View();
         }
 
-          [HttpPost("/list/clear")]
+        [HttpPost("/list/clear")]
         public ActionResult Clear()
         {
-            adds.Clear();
+            Info.Clear();
             return View();
         }
+
         [Route("/list")]
         public ActionResult List()
         {
-        Address newAddress = new Address(
+        Info newInfo = new Info(
             Request.Form["name"],
             Request.Form["phone"],
-            Request.Form["address"])
+            Request.Form["address"]
         );
-        newAddress.Save();
-        List<Address> allAddress = adds.GetAll();
-            return View(allAddress);
+        newInfo.Save();
+        List<Info> allInfo = Info.GetAll();
+            return View(allInfo);
           }
     }
 }

@@ -6,17 +6,19 @@
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
   </head>
   <body>
+
     <div class="jumbotron">
-      <h1>Here is your information</h1>
-      @foreach (var adds in Model)
-      {
+      <h1>Here is the current Phone information</h1>
+
+          @foreach (var book in Model)
+          {
     <div class="row">
     <div class="col-md-2">
       </div>
       <div class="col-md-2" align="left">
-        <p>@adds.GetName()</p>
-        <p>@adds.GetPhone()</p>
-        <p>@adds.GetAddress()</p>
+        <h4>@book.GetName()</h4>
+        <h5>@book.GetPhone()</h5>
+        <h5>@book.GetAddress()</h5>
       </div>
     </div>
       }
@@ -29,6 +31,5 @@
         <button type="submit" name="clear">Clear List</button>
       </form>
     </div>
-
   </body>
 </html>
