@@ -1,6 +1,10 @@
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using Address.Models;
 namespace FriendLetter.Models
 {
-    public class LetterVariable
+    public class address
     {
         private string _recipient;
         private string _sender;

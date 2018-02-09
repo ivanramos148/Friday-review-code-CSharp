@@ -6,18 +6,22 @@ namespace Project.Controllers
     {
 
         [Route("/")]
-        public ActionResult Form()
+          public ActionResult index()
         {
             return View();
         }
 
-        // [Route("/greeting_card")]
-        // public ActionResult GreetingCard()
-        // {
-        //     LetterVariable myLetterVariable = new LetterVariable();
-        //     myLetterVariable.SetRecipient(Request.Query["recipient"]);
-        //     myLetterVariable.SetSender(Request.Query["sender"]);
-        //     return View("Letter", myLetterVariable);
-        // }
+          [HttpPost("/list/clear")]
+        public ActionResult Clear()
+        {
+            Car.Clear();
+            return View();
+        }
+
+
+
+
+
+
     }
 }
